@@ -1,0 +1,87 @@
+DROP DATABASE IF EXISTS sistema;
+CREATE DATABASE sistema;
+USE sistema;
+
+CREATE TABLE Cursos (
+    id_curso INT PRIMARY KEY AUTO_INCREMENT,
+    nome_curso VARCHAR(100) NOT NULL,
+    semestres INT NOT NULL,
+    descricao TEXT,
+    mensalidades DECIMAL(10, 2) NOT NULL
+);
+
+CREATE TABLE Professores (
+    id_professor INT PRIMARY KEY AUTO_INCREMENT,
+    nome_professor VARCHAR(150) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    telefone VARCHAR(15)
+);
+
+CREATE TABLE Alunos (
+    id_aluno INT PRIMARY KEY AUTO_INCREMENT,
+    nome_completo VARCHAR(150) NOT NULL,
+    cpf VARCHAR(11) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    telefone VARCHAR(15),
+    numero_matricula VARCHAR(20) NOT NULL UNIQUE,
+    cep VARCHAR(8),
+    bairro VARCHAR(100),
+    cidade VARCHAR(100),
+    endereco_numero VARCHAR(10),
+    estado VARCHAR(2)
+);
+
+CREATE TABLE Disciplinas (
+    id_disciplina INT PRIMARY KEY AUTO_INCREMENT,
+    nome_disciplina VARCHAR(100) NOT NULL,
+    carga_horaria INT,
+    id_curso INT NOT NULL,
+    FOREIGN KEY (id_curso) REFERENCES Cursos(id_curso)
+);
+
+CREATE TABLE Turmas (
+    id_turma INT PRIMARY KEY AUTO_INCREMENT,
+    ano_semestre VARCHAR(10) NOT NULL,
+    id_disciplina INT NOT NULL,
+    id_professor INT NOT NULL,
+    FOREIGN KEY (id_disciplina) REFERENCES Disciplinas(id_disciplina),
+    FOREIGN KEY (id_professor) REFERENCES Professores(id_professor)
+);
+
+CREATE TABLE Matriculas (
+    id_matricula INT PRIMARY KEY AUTO_INCREMENT,
+    nota_final DECIMAL(4, 2),
+    frequencia_aluno DECIMAL(5, 2),
+    id_aluno INT NOT NULL,
+    id_turma INT NOT NULL,
+    FOREIGN KEY (id_aluno) REFERENCES Alunos(id_aluno),
+    FOREIGN KEY (id_turma) REFERENCES Turmas(id_turma)
+);
+
+INSERT INTO Cursos (id_curso, nome_curso, semestres, descricao, mensalidades) VALUES
+(1, 'Direito', 10, 'Curso de bacharelado em Direito.', 950.00),
+(2, 'Análise e Desenvolvimento de Sistemas', 5, 'Curso superior de tecnologia (tecnólogo).', 780.00);
+
+INSERT INTO Professores (id_professor, nome_professor, email, telefone) VALUES
+(101, 'Dr. Carlos Andrade', 'carlos.andrade@faculdade.com', '11987654321'),
+(102, 'Msc. Ana Beatriz Costa', 'ana.costa@faculdade.com', '11912345678');
+
+INSERT INTO Alunos (id_aluno, nome_completo, cpf, email, numero_matricula, estado) VALUES
+(1001, 'Mariana Silva', '11122233344', 'mari.silva@email.com', 'RA2025001', 'SP'),
+(1002, 'João Pereira', '22233344455', 'joao.pereira@email.com', 'RA2025002', 'SP'),
+(1003, 'Fernanda Oliveira', '33344455566', 'fer.oliveira@email.com', 'RA2025003', 'RJ');
+
+INSERT INTO Disciplinas (id_disciplina, nome_disciplina, carga_horaria, id_curso) VALUES
+(201, 'Introdução ao Direito', 80, 1),
+(202, 'Direito Penal I', 80, 1),
+(301, 'Algoritmos e Lógica de Programação', 120, 2),
+(302, 'Banco de Dados', 100, 2);
+
+INSERT INTO Turmas (id_turma, ano_semestre, id_disciplina, id_professor) VALUES
+(10, '2025-2', 201, 101),
+(11, '2025-2', 302, 102);
+
+INSERT INTO Matriculas (id_matricula, id_aluno, id_turma, nota_final, frequencia_aluno) VALUES
+(5001, 1001, 10, 8.5, 90.0),
+(5002, 1002, 11, 9.5, 95.0),
+(5003, 1003, 11, 7.0, 88.0);
