@@ -2,9 +2,9 @@
 
 ## Objetivo
 
-Script de estudo em MySQL para criar uma base de dados acadêmica e praticar modelagem relacional, integridade dos dados e relacionamentos entre tabelas.
+Projeto de estudo em MySQL para criar uma base de dados acadêmica e praticar modelagem relacional, integridade dos dados e consultas de investigação.
 
-## Estrutura
+## Estrutura do banco
 
 O script `PORTFÓLIO SQL` cria o banco `sistema` e as tabelas:
 
@@ -15,26 +15,33 @@ O script `PORTFÓLIO SQL` cria o banco `sistema` e as tabelas:
 - `Turmas`
 - `Matriculas`
 
-As tabelas usam chaves primárias, restrições `NOT NULL` e `UNIQUE`, além de chaves estrangeiras para representar os relacionamentos entre cursos, disciplinas, turmas, professores, alunos e matrículas. O script também insere dados fictícios para demonstração.
+As tabelas usam chaves primárias, restrições `NOT NULL` e `UNIQUE`, além de chaves estrangeiras para representar os relacionamentos. O script também insere dados fictícios para demonstração.
+
+## Arquivos
+
+- [`PORTFÓLIO SQL`](./PORTF%C3%93LIO%20SQL): criação das tabelas e carga de dados de exemplo.
+- [`consultas-investigacao.sql`](./consultas-investigacao.sql): consultas para investigar dados e responder perguntas.
 
 ## Como executar
 
 1. Abra o MySQL Workbench ou outro cliente MySQL.
-2. Abra o arquivo `PORTFÓLIO SQL`.
-3. Revise o script antes de executar: ele contém `DROP DATABASE IF EXISTS sistema`, que apaga o banco `sistema` existente.
-4. Execute o script em um ambiente de estudo.
+2. Revise e execute primeiro o arquivo `PORTFÓLIO SQL`.
+3. Depois, execute as consultas de `consultas-investigacao.sql`.
 
-> **Atenção:** execute apenas em uma base de testes. Não use dados pessoais reais neste projeto.
+> **Atenção:** o script de criação contém `DROP DATABASE IF EXISTS sistema`, que apaga o banco `sistema` existente. Execute somente em ambiente de teste e não use dados pessoais reais.
 
-## O que este projeto demonstra
+## Consultas praticadas
 
-- Criação de banco e tabelas relacionais.
-- Definição de chaves primárias e estrangeiras.
-- Restrições de integridade.
-- Inserção de dados para testes.
+- `JOIN` para relacionar alunos, matrículas, disciplinas e professores.
+- Filtros para localizar registros que atendem a critérios.
+- `GROUP BY` e `COUNT` para resumir informações.
+- `LEFT JOIN` para localizar disciplinas sem turmas.
+- Busca de registro por e-mail.
+
+As regras de atenção usadas nas consultas são exemplos didáticos. Em cenários reais, as regras de negócio devem ser confirmadas antes de tirar conclusões.
 
 ## Próximas melhorias
 
-- Adicionar consultas de investigação com `SELECT`, `WHERE`, `JOIN`, `GROUP BY` e ordenação.
-- Incluir exemplos de perguntas de negócio e os resultados esperados.
-- Separar scripts de criação, carga de dados e consultas.
+- Incluir capturas de tela dos resultados das consultas.
+- Adicionar cenários de investigação escritos como chamados técnicos.
+- Separar os scripts de criação, carga de dados e consultas em uma estrutura de pastas.
