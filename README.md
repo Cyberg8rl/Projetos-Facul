@@ -39,9 +39,3 @@ As tabelas usam chaves primárias, restrições `NOT NULL` e `UNIQUE`, além de 
 - Busca de registro por e-mail.
 
 As regras de atenção usadas nas consultas são exemplos didáticos. Em cenários reais, as regras de negócio devem ser confirmadas antes de tirar conclusões.
-
-## Próximas melhorias
-
-- Incluir capturas de tela dos resultados das consultas.
-- Adicionar cenários de investigação escritos como chamados técnicos.
-- Separar os scripts de criação, carga de dados e consultas em uma estrutura de pastas.
